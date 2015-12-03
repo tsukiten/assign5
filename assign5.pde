@@ -111,7 +111,7 @@ void setup () {
   
   score = createFont("Cambria", 24);
   textFont(score, 28);
-  textAlign(LEFT);
+  textAlign(CENTER)
 }
 
 
@@ -143,6 +143,10 @@ void draw() {
       //treasure
       image (treasure, treasureX, treasureY);    
       
+      //score
+      fill(255);
+      text("Score:" + scoreNum, 15, 460);
+      
       //fighter
       image(fighter, fighterX, fighterY);
       
@@ -168,7 +172,7 @@ void draw() {
       if ( curFlame > 4){
         curFlame = 0;
       }
-      //flame buring
+      
       if(timer > 31){
         for (int i = 0; i < 5; i ++){
           flameP[i][0] = 1000;
@@ -192,7 +196,7 @@ void draw() {
         case c :               
           for ( int i = 0; i < 5; i++ ){
             image(enemy, enemyC [i][0], enemyC [i][1]);
-            //bullet flame
+            //bullet hit
             for (int j = 0; j < 5; j++ ){
               if(getHit(bulletX[j], bulletY[j], bullet.width, bullet.height, enemyC[i][0], enemyC[i][1], enemy.width, enemy.height) == true && bulletLimit[j] == true){
                 for (int k = 0;  k < 5; k++ ){
@@ -205,7 +209,7 @@ void draw() {
                 scoreChange(20);
               }
             }  
-            //fighter get flame
+            //fighter be hit
             if(getHit(fighterX, fighterY ,fighter.width, fighter.height,  enemyC[i][0], enemyC[i][1], enemy.width, enemy.height) == true){
               for (int j = 0;  j < 5; j++){
                 flameP [j][0] = enemyC [i][0];
@@ -223,7 +227,7 @@ void draw() {
               enemyC [i][0] += enemySpeed;
             }      
           }
-          //go to b
+          //to b
           if (enemyC [enemyC.length-1][0] > 800 ) {        
             enemyY = floor(random(30,240));            
             spacingX = 0;  
@@ -239,7 +243,7 @@ void draw() {
         case b :
           for (int i = 0; i < 5; i++ ){
             image(enemy, enemyB [i][0] , enemyB [i][1]);
-            //bullet flame
+            //bullet hit
             for(int j = 0; j < 5; j++){
               if (getHit(bulletX[j], bulletY[j], bullet.width, bullet.height, enemyB [i][0], enemyB [i][1], enemy.width, enemy.height) == true && bulletLimit[j] == true){
                 for(int k = 0;  k < 5; k++ ){
@@ -252,7 +256,7 @@ void draw() {
                 scoreChange(20);
               }
             }   
-            //fighter get flame
+            //fighter be hit
             if ( getHit(fighterX, fighterY ,fighter.width, fighter.height,  enemyB[i][0], enemyB[i][1], enemy.width, enemy.height) == true){
               for (int j = 0;  j < 5; j++ ){
                  flameP [j][0] = enemyB [i][0];
@@ -271,7 +275,7 @@ void draw() {
             }         
           }
           
-          //go to a
+          //to a
           if (enemyB [4][0] > 800){
             enemyY = floor( random(200,280) );
             enemyState = a;            
@@ -305,7 +309,7 @@ void draw() {
         case a :  
           for( int i = 0; i < 8; i++ ){
             image(enemy, enemyA [i][0], enemyA [i][1]);     
-            //bullet flame     
+            //bullet hit   
             for( int j = 0; j < 5; j++ ){
               if ( getHit(bulletX[j], bulletY[j], bullet.width, bullet.height, enemyA[i][0], enemyA[i][1], enemy.width, enemy.height) == true && bulletLimit[j] == true){
                 for (int s = 0;  s < 5; s++){
@@ -318,7 +322,7 @@ void draw() {
                 scoreChange(20);
               }
             }       
-            //fighter flame
+            //fighter be hit
             if ( getHit(fighterX, fighterY ,fighter.width, fighter.height,  enemyA[i][0], enemyA[i][1], enemy.width, enemy.height) == true){ 
               for ( int j = 0;  j < 5; j++ ){
                 flameP [j][0] = enemyA [i][0];
@@ -337,7 +341,7 @@ void draw() {
             }     
           }
           
-          //go to C
+          //to C
           if(enemyA [4][0] > 900 ){
             enemyY = floor(random(80,400));
             spacingX = 0;       
@@ -361,9 +365,7 @@ void draw() {
       if(hpX >= 195){
         hpX = 195;
       }
-      
-      fill(255);
-      text("Score:" + scoreNum, 15, 460);
+    
       
     break ;  
     
