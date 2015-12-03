@@ -111,7 +111,7 @@ void setup () {
   
   score = createFont("Cambria", 24);
   textFont(score, 28);
-  textAlign(CENTER)
+  textAlign(LEFT)
 }
 
 
