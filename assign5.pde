@@ -75,15 +75,15 @@ void setup () {
   gameState = GAME_START;
   enemyState = c;
   hpX = 40; 
-  treasureX = floor( random(50, width - 40) );
-  treasureY = floor( random(50, height - 60) );
-  fighterX = 500 ;
+  treasureX = floor( random(50, 600) );
+  treasureY = floor( random(50, 420) );
+  fighterX = 550 ;
   fighterY = height / 2 ; 
 
   //speed
-  fighterSpeed = 5;
+  fighterSpeed = 6;
   enemySpeed = 4;
-  bulletSpeed = 4;
+  bulletSpeed = 5;
   
   //flame
   timer = 0;
@@ -99,7 +99,7 @@ void setup () {
   }
 
   //enemy line
-  spacingX = 0;  
+  spacingX = -30 ;  
   spacingY = -60; 
   enemyY = floor(random(80, 400));    
   for (int i = 0; i < 5; i++){
@@ -134,6 +134,11 @@ void draw() {
       image(bg1,q%1280-640,0); 
       image(bg2,(q+640)%1280-640,0);
       q++;
+      
+      //hp
+      fill (235,0,0);
+      rect (28,27,hpX,23);
+      image(hp,20,20);   
       
       //treasure
       image (treasure, treasureX, treasureY);    
@@ -206,21 +211,20 @@ void draw() {
                 flameP [j][0] = enemyC [i][0];
                 flameP [j][1] = enemyC [i][1];
               }
-              hpX -= 40;          
+              hpX -= 39;          
               enemyC [i][1] = -1000;
               timer = 0; 
             }else if(hpX <= 0){
               gameState = GAME_OVER;
-              hpX = 40;
+              hpX = 39;
               fighterX = 550;
               fighterY = height / 2 ;
             } else {
               enemyC [i][0] += enemySpeed;
-              enemyC [i][0] %= 1280;
             }      
           }
           //go to b
-          if (enemyC [enemyC.length-1][0] > 640+100 ) {        
+          if (enemyC [enemyC.length-1][0] > 800 ) {        
             enemyY = floor(random(30,240));            
             spacingX = 0;  
             for (int i = 0; i < 5; i++){
@@ -256,20 +260,19 @@ void draw() {
                }
               enemyB [i][1] = -1000;
               timer = 0; 
-              hpX -= 40;
+              hpX -= 39;
             }else if(hpX<= 0){
               gameState = GAME_OVER;
-              hpX = 40;
+              hpX = 39;
               fighterX = 550;
               fighterY = height / 2 ;
             } else {
               enemyB [i][0] += enemySpeed;
-              enemyB [i][0] %= 1280;
             }         
           }
           
           //go to a
-          if (enemyB [4][0] > 640 + 100){
+          if (enemyB [4][0] > 800){
             enemyY = floor( random(200,280) );
             enemyState = a;            
             spacingX = 0;  
@@ -315,28 +318,27 @@ void draw() {
                 scoreChange(20);
               }
             }       
-            //fighter get flame
+            //fighter flame
             if ( getHit(fighterX, fighterY ,fighter.width, fighter.height,  enemyA[i][0], enemyA[i][1], enemy.width, enemy.height) == true){ 
               for ( int j = 0;  j < 5; j++ ){
                 flameP [j][0] = enemyA [i][0];
                 flameP [j][1] = enemyA [i][1];
               }
-              hpX -= 40;
+              hpX -= 39;
               enemyA [i][1] = -1000;
               timer = 0; 
             } else if ( hpX <= 0 ) {
               gameState = GAME_OVER;
-              hpX = 40;
+              hpX = 39;
               fighterX = 550 ;
-              fighterY = width/2 ;
+              fighterY = height/2 ;
             } else {
               enemyA [i][0] += enemySpeed;
-              enemyA [i][0] %= 1920;
             }     
           }
           
-          //go to c
-          if(enemyA [4][0] > 640 + 300 ){
+          //go to C
+          if(enemyA [4][0] > 900 ){
             enemyY = floor(random(80,400));
             spacingX = 0;       
             for (int i = 0; i < 5; i++ ){
@@ -349,22 +351,20 @@ void draw() {
         break ;
       }
 
-     //hp
-      fill (255,0,0);
-      rect (35, 15, hpX, 30);
-      image(hp, 28, 15);   
+     
       //get treasure
       if(getHit(treasureX, treasureY, treasure.width, treasure.height, fighterX, fighterY, fighter.width, fighter.height) == true){    
               hpX += 20;
               treasureX = floor(random(50,600));         
               treasureY = floor(random(50,420));
       }
-      if(hpX >= 200){
-        hpX = 200;
+      if(hpX >= 195){
+        hpX = 195;
       }
       
       fill(255);
       text("Score:" + scoreNum, 15, 460);
+      
     break ;  
     
     
