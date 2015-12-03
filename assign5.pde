@@ -77,7 +77,7 @@ void setup () {
   hpX = 40; 
   treasureX = floor( random(50, width - 40) );
   treasureY = floor( random(50, height - 60) );
-  fighterX = width - 65 ;
+  fighterX = 500 ;
   fighterY = height / 2 ; 
 
   //speed
@@ -110,7 +110,7 @@ void setup () {
   }
   
   score = createFont("Cambria", 24);
-  textFont(score, 24);
+  textFont(score, 28);
   textAlign(LEFT);
 }
 
@@ -213,7 +213,7 @@ void draw() {
               gameState = GAME_OVER;
               hpX = 40;
               fighterX = 550;
-              fighterY = width / 2 ;
+              fighterY = height / 2 ;
             } else {
               enemyC [i][0] += enemySpeed;
               enemyC [i][0] %= 1280;
@@ -261,7 +261,7 @@ void draw() {
               gameState = GAME_OVER;
               hpX = 40;
               fighterX = 550;
-              fighterY = width / 2 ;
+              fighterY = height / 2 ;
             } else {
               enemyB [i][0] += enemySpeed;
               enemyB [i][0] %= 1280;
@@ -335,7 +335,7 @@ void draw() {
             }     
           }
           
-          //go to C
+          //go to c
           if(enemyA [4][0] > 640 + 300 ){
             enemyY = floor(random(80,400));
             spacingX = 0;       
@@ -364,7 +364,7 @@ void draw() {
       }
       
       fill(255);
-      text("Score:" + scoreNum, 10, 470);
+      text("Score:" + scoreNum, 15, 460);
     break ;  
     
     
