@@ -1,22 +1,21 @@
-PImage start1, start2, bg1,bg2,end1, end2;
-PImage treasure,fighter, enemy,bullet;
-int q;//bg
-PImage hp;
-PFont score;
-int scoreNum = 0;
-
 
 final int GAME_START = 0;
 final int GAME_RUN = 1;
 final int GAME_OVER = 2;
 int gameState;
 
-final int C = 0;
-final int B = 1;
-final int A = 2;
+final int c = 0;
+final int b = 1;
+final int a = 2;
 int enemyState;
 
 int hpX;
+PImage start1, start2, bg1,bg2,end1, end2;
+PImage treasure,fighter, enemy,bullet;
+int q;//bg
+PImage hp;
+PFont score;
+int scoreNum = 0;
 
 //enemy
 PImage [] enemyPic = new PImage [5];
@@ -74,7 +73,7 @@ void setup () {
   bullet = loadImage ("img/shoot.png");
   
   gameState = GAME_START;
-  enemyState = C;
+  enemyState = c;
   hpX = 40; 
   treasureX = floor( random(50, width - 40) );
   treasureY = floor( random(50, height - 60) );
@@ -185,7 +184,7 @@ void draw() {
     
       //enemy
       switch (enemyState) { 
-        case C :               
+        case c :               
           for ( int i = 0; i < 5; i++ ){
             image(enemy, enemyC [i][0], enemyC [i][1]);
             //bullet flame
@@ -220,7 +219,7 @@ void draw() {
               enemyC [i][0] %= 1280;
             }      
           }
-          //go to B
+          //go to b
           if (enemyC [enemyC.length-1][0] > 640+100 ) {        
             enemyY = floor(random(30,240));            
             spacingX = 0;  
@@ -229,11 +228,11 @@ void draw() {
               enemyB[i][1] = enemyY - spacingX / 2;
               spacingX -= 80;                 
             }
-            enemyState = B;
+            enemyState = b;
           }
         break ; 
         
-        case B :
+        case b :
           for (int i = 0; i < 5; i++ ){
             image(enemy, enemyB [i][0] , enemyB [i][1]);
             //bullet flame
@@ -269,10 +268,10 @@ void draw() {
             }         
           }
           
-          //go to A
+          //go to a
           if (enemyB [4][0] > 640 + 100){
             enemyY = floor( random(200,280) );
-            enemyState = A;            
+            enemyState = a;            
             spacingX = 0;  
             spacingY = -60; 
             for ( int i = 0; i < 8; i ++ ) {
@@ -300,7 +299,7 @@ void draw() {
           }
         break ;        
         
-        case A :  
+        case a :  
           for( int i = 0; i < 8; i++ ){
             image(enemy, enemyA [i][0], enemyA [i][1]);     
             //bullet flame     
@@ -345,7 +344,7 @@ void draw() {
               enemyC [i][0] = spacingX;
               spacingX -= 80;
             } 
-            enemyState = C;            
+            enemyState = c;            
           }  
         break ;
       }
