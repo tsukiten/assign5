@@ -9,7 +9,7 @@ final int b = 1;
 final int a = 2;
 int enemyState;
 
-int hpX;
+float hpX;
 PImage start1, start2, bg1,bg2,end1, end2;
 PImage treasure,fighter, enemy,bullet;
 int q;//bg
@@ -74,7 +74,7 @@ void setup () {
   
   gameState = GAME_START;
   enemyState = c;
-  hpX = 40; 
+  hpX = 39; 
   treasureX = floor( random(50, 600) );
   treasureY = floor( random(50, 420) );
   fighterX = 550 ;
@@ -358,7 +358,7 @@ void draw() {
      
       //get treasure
       if(getHit(treasureX, treasureY, treasure.width, treasure.height, fighterX, fighterY, fighter.width, fighter.height) == true){    
-              hpX += 20;
+              hpX += 19.5;
               treasureX = floor(random(50,600));         
               treasureY = floor(random(50,420));
       }
